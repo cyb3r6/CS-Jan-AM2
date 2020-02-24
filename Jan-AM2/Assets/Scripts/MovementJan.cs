@@ -35,27 +35,36 @@ public class MovementJan : MonoBehaviour
             transform.Translate(Vector3.back * Time.deltaTime * movementSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            //transform.Translate(Vector3.up);
+            transform.Translate(Vector3.up * Time.deltaTime * movementSpeed);
 
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.AddForce(Vector3.up * jumpForce);
+            //Rigidbody rb = GetComponent<Rigidbody>();
+            //rb.AddForce(Vector3.up * jumpForce);
         }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(Vector3.down * Time.deltaTime * movementSpeed);
+        }
+
         #endregion
 
         #region Rotation using the keyboard
         //if (Input.GetKey(KeyCode.E))
         //{
-        //    transform.Rotate(Vector3.up);
+        //    transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed);
         //}
-        //if (Input.GetKey(KeyCode.Q))
+        //if (Input.GetKey(KeyCode.Q) * Time.deltaTime * turnSpeed)
         //{
-        //    transform.Rotate(Vector3.down);
+        //    transform.Rotate(Vector3.down * Time.deltaTime * turnSpeed);
         //}
-        //if (Input.GetKey(KeyCode.U))
+        //if (Input.GetKey(KeyCode.C))
         //{
-        //    transform.Rotate(Vector3.right);
+        //    transform.Rotate(Vector3.right * Time.deltaTime * turnSpeed);
+        //}
+        //if (Input.GetKey(KeyCode.Z))
+        //{
+        //    transform.Rotate(Vector3.left * Time.deltaTime * turnSpeed);
         //}
         #endregion
 
