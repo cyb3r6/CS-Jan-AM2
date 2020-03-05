@@ -27,6 +27,5 @@ public class VRinput : MonoBehaviour
     void Update()
     {
         gripValue = Input.GetAxis(gripAxis);
-        Debug.Log("The grip  value is: " + gripValue);
     }
 }

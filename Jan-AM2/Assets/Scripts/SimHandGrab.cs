@@ -29,7 +29,7 @@ public class SimHandGrab : MonoBehaviour
             {
                 heldObject = collidingObject;
 
-                Grab();
+                AdvGrab();
             }
         }
 
@@ -37,7 +37,7 @@ public class SimHandGrab : MonoBehaviour
         {
             if (heldObject)
             {
-                Release();
+                AdvRelease();
             }
         }
     }
@@ -55,5 +55,22 @@ public class SimHandGrab : MonoBehaviour
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
         heldObject.transform.SetParent(null);
         heldObject = null;
+    }
+
+    public void AdvGrab()
+    {
+        FixedJoint fx = gameObject.AddComponent<FixedJoint>();
+        fx.breakForce = 2000;
+        heldObject.transform.rotation = this.transform.rotation;
+        fx.connectedBody = heldObject.GetComponent<Rigidbody>();
+    }
+
+    public void AdvRelease()
+    {
+        if (GetComponent<FixedJoint>())
+        {
+            Destroy(GetComponent<FixedJoint>());
+            heldObject = null;
+        }
     }
 }
