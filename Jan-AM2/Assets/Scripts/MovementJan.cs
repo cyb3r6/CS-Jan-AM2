@@ -8,10 +8,18 @@ public class MovementJan : MonoBehaviour
     public float jumpForce;
     public float movementSpeed;
     public float turnSpeed;
-    
+
+    public Vector3 handVelocity;
+    private Vector3 previousPosition;
+
+    public Vector3 handAngularVelocity;
+    private Vector3 previousAngularRotation;
+
+    public bool isButtonPressed;
+
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -47,6 +55,15 @@ public class MovementJan : MonoBehaviour
             transform.Translate(Vector3.down * Time.deltaTime * movementSpeed);
         }
 
+        if (Input.GetKey(KeyCode.T))
+        {
+            isButtonPressed = true;
+        }
+        else
+        {
+            isButtonPressed = false;
+        }
+
         #endregion
 
         #region Rotation using the keyboard
@@ -68,7 +85,17 @@ public class MovementJan : MonoBehaviour
         //}
         #endregion
 
-        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * turnSpeed);
+        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X"), Space.World);
+        transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y"), Space.World);
+
+
+        handVelocity = (this.transform.position - previousPosition) / Time.deltaTime;
+        previousPosition = this.transform.position;
+
+        handAngularVelocity = (this.transform.eulerAngles - previousAngularRotation) / Time.deltaTime;
+        previousAngularRotation = this.transform.eulerAngles;
+
+
     }
 
 }

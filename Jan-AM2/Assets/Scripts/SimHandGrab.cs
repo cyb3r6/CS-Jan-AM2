@@ -6,6 +6,13 @@ public class SimHandGrab : MonoBehaviour
 {
     public GameObject collidingObject;
     public GameObject heldObject;
+    public float throwForce;
+    private MovementJan movementJan;
+
+    private void Awake()
+    {
+        movementJan = GetComponent<MovementJan>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -52,6 +59,8 @@ public class SimHandGrab : MonoBehaviour
     public void Release()
     {
         Debug.Log("Release!");
+        heldObject.GetComponent<Rigidbody>().velocity = movementJan.handVelocity * throwForce;
+        heldObject.GetComponent<Rigidbody>().angularVelocity = movementJan.handAngularVelocity * throwForce;
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
         heldObject.transform.SetParent(null);
         heldObject = null;
@@ -70,6 +79,8 @@ public class SimHandGrab : MonoBehaviour
         if (GetComponent<FixedJoint>())
         {
             Destroy(GetComponent<FixedJoint>());
+            heldObject.GetComponent<Rigidbody>().velocity = movementJan.handVelocity * throwForce;
+            heldObject.GetComponent<Rigidbody>().angularVelocity = movementJan.handAngularVelocity * throwForce;
             heldObject = null;
         }
     }
