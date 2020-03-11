@@ -8,6 +8,7 @@ public class VRGrab : MonoBehaviour
 
     public GameObject collidingObject;
     public GameObject heldObject;
+    public float throwForce;
 
     private bool gripHeld;      // prevent the Grab(); from being called every frame
 
@@ -65,6 +66,8 @@ public class VRGrab : MonoBehaviour
     {
         Debug.Log("Release!");
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
+        heldObject.GetComponent<Rigidbody>().velocity = controller.handVelocity * throwForce;
+        heldObject.GetComponent<Rigidbody>().angularVelocity = controller.handAngularVelocity * throwForce;
         heldObject.transform.SetParent(null);
         heldObject = null;
     }

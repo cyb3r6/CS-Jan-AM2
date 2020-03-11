@@ -12,7 +12,8 @@ public class SimHandTeleport : MonoBehaviour
     private bool shouldTeleport;
     private Vector3 hitPosition;
 
-    
+    private float offset;
+
     void Awake()
     {
         line = GetComponent<LineRenderer>();
@@ -34,16 +35,33 @@ public class SimHandTeleport : MonoBehaviour
                 shouldTeleport = true;
 
                 line.enabled = true;
+
+                Offset();
             }
         }
         else if(movementJan.isButtonPressed == false)
         {
             if(shouldTeleport == true)
             {
-                simHand.position = new Vector3(hitPosition.x, hitPosition.y + simHand.position.y, hitPosition.z);
+                simHand.position = new Vector3(hitPosition.x, hitPosition.y + offset, hitPosition.z);
                 shouldTeleport = false;
                 line.enabled = false;
             }
+        }
+    }
+
+    private float Offset()
+    {
+        RaycastHit offsetHit;
+        if(Physics.Raycast(simHand.position, -simHand.up, out offsetHit))
+        {
+            Vector3 distance = simHand.position - offsetHit.point;
+
+            return offset = distance.y;
+        }
+        else
+        {
+            return default;     // default value of a float = 0.0f. bool = false. string = null.
         }
     }
 }

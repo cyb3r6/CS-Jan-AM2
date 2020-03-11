@@ -67,26 +67,26 @@ public class MovementJan : MonoBehaviour
         #endregion
 
         #region Rotation using the keyboard
-        //if (Input.GetKey(KeyCode.E))
-        //{
-        //    transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed);
-        //}
-        //if (Input.GetKey(KeyCode.Q) * Time.deltaTime * turnSpeed)
-        //{
-        //    transform.Rotate(Vector3.down * Time.deltaTime * turnSpeed);
-        //}
-        //if (Input.GetKey(KeyCode.C))
-        //{
-        //    transform.Rotate(Vector3.right * Time.deltaTime * turnSpeed);
-        //}
-        //if (Input.GetKey(KeyCode.Z))
-        //{
-        //    transform.Rotate(Vector3.left * Time.deltaTime * turnSpeed);
-        //}
+        if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(Vector3.down * Time.deltaTime * turnSpeed);
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            transform.Rotate(Vector3.right * Time.deltaTime * turnSpeed);
+        }
+        if (Input.GetKey(KeyCode.Z))
+        {
+            transform.Rotate(Vector3.left * Time.deltaTime * turnSpeed);
+        }
         #endregion
 
-        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X"), Space.World);
-        transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y"), Space.World);
+        //transform.Rotate(Vector3.up * Input.GetAxis("Mouse X"), Space.World);
+        //transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y"), Space.World);
 
 
         handVelocity = (this.transform.position - previousPosition) / Time.deltaTime;
