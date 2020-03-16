@@ -2,20 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+public class Shooting : GrabbableObjectSimHand
 {
     public GameObject paintballPrefab;
     public Transform spawnPoint;
     public float shootingForce;
     public ShotCounter shotCounterScript;
-    void Update()
+
+    //private GrabbableObjectSimHand gosimHandController;
+
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        //gosimHandController = GetComponent<GrabbableObjectSimHand>();
+    }
+
+    private void Update()
+    {
+        if (isBeingHeld == true)
         {
-            GameObject tempPaintball = Instantiate(paintballPrefab, spawnPoint.position, spawnPoint.rotation);
-            tempPaintball.GetComponent<Rigidbody>().AddForce(tempPaintball.transform.forward * shootingForce);
-            Destroy(tempPaintball, 3);
-            shotCounterScript.shotsFired++;
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Interactable();
+            }
         }
+    }
+
+    public void Interactable()
+    {
+        GameObject tempPaintball = Instantiate(paintballPrefab, spawnPoint.position, spawnPoint.rotation);
+        tempPaintball.GetComponent<Rigidbody>().AddForce(tempPaintball.transform.forward * shootingForce);
+        Destroy(tempPaintball, 3);
+        shotCounterScript.shotsFired++;
     }
 }
