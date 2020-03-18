@@ -62,7 +62,6 @@ public class VRinput : MonoBehaviour
         if (Input.GetButtonDown(thumbstickButton))
         {
             isThumbStickPressed = true;
-            Debug.Log(isThumbStickPressed);
         }
         if (Input.GetButtonUp(thumbstickButton))
         {

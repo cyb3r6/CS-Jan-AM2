@@ -37,7 +37,8 @@ public class SimHandGrab : MonoBehaviour
             {
                 heldObject = collidingObject;
 
-                Grab();
+                //Grab();
+                AdvGrab();
             }
         }
 
@@ -45,7 +46,8 @@ public class SimHandGrab : MonoBehaviour
         {
             if (heldObject)
             {
-                Release();
+                //Release();
+                AdvRelease();
             }
         }
 
