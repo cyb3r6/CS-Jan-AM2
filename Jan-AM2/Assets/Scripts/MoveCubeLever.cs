@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MoveCubeLever : MonoBehaviour
 {
-    public HingeLever forwardBackLeverController, rightLeftLeverController, upDownLeverController;
-    public float speed;
+    public HingeLever forwardBackLeverController, rightLeftLeverController, upDownLeverController, dialController;
+    public float speed, turnSpeed;
 
     void Update()
     {
@@ -17,5 +17,9 @@ public class MoveCubeLever : MonoBehaviour
 
         if (Mathf.Abs(upDownLeverController.JointAngle()) > 0.05f)
             transform.position = transform.position + transform.up * Time.deltaTime * speed * upDownLeverController.JointAngle();
+
+        // homework!
+        if (Mathf.Abs(dialController.JointAngle()) > 0.05f)
+            transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * dialController.JointAngle());
     }
 }

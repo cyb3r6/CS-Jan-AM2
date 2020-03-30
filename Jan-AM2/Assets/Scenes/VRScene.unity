@@ -10910,7 +10910,9 @@ MonoBehaviour:
   forwardBackLeverController: {fileID: 1174025721}
   rightLeftLeverController: {fileID: 2014301705}
   upDownLeverController: {fileID: 520270549}
+  dialController: {fileID: 2100014785}
   speed: 20
+  turnSpeed: 60
 --- !u!54 &1275129581
 Rigidbody:
   m_ObjectHideFlags: 0
