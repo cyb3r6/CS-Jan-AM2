@@ -11,5 +11,4 @@ public class GrabbableObjectSimHand : MonoBehaviour
     public GameObject hand;
     public bool isBeingHeld;
     public SimHandGrab simHandController;
-   
 }

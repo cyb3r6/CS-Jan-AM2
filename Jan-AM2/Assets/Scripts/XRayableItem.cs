@@ -8,13 +8,26 @@ using UnityEngine;
 /// </summary>
 public class XRayableItem : MonoBehaviour
 {
-    
+    private int startingRenderQueue;
+    public List<Renderer> treasureRenderers = new List<Renderer>();
+
     void Start()
     {
-        if (GetComponent<Renderer>())
-        {
-            GetComponent<Renderer>().material.renderQueue = 3002;
-        }
+        startingRenderQueue = treasureRenderers[0].material.renderQueue;
     }
     
+    public void XRay()
+    {
+        foreach(Renderer rend in treasureRenderers)
+        {
+            rend.material.renderQueue = 3002;
+        }
+    }
+    public void DeXRay()
+    {
+        foreach (Renderer rend in treasureRenderers)
+        {
+            rend.material.renderQueue = startingRenderQueue;
+        }
+    }
 }

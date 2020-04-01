@@ -55,7 +55,7 @@ public class MovementJan : MonoBehaviour
             transform.Translate(Vector3.down * Time.deltaTime * movementSpeed);
         }
 
-        if (Input.GetKey(KeyCode.T))
+        if (Input.GetKey(KeyCode.I))
         {
             isButtonPressed = true;
         }

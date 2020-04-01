@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlashlightVR : GrabbableObjectVR
 {
     private Light spotLight;
+    private bool enable = false;
 
     void Start()
     {
@@ -16,9 +17,14 @@ public class FlashlightVR : GrabbableObjectVR
     {
         if (isBeingHeld == true)
         {
-            if (controller.triggerValue > 0.5f)
+            if (controller.triggerValue > 0.5f && !enable)
             {
+                enable = true;
                 Interactable();
+            }
+            if(controller.triggerValue < 0.5f && enable)
+            {
+                enable = false;
             }
         }
     }

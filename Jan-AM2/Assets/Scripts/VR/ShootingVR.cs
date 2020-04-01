@@ -2,17 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingVR : MonoBehaviour
+public class ShootingVR : GrabbableObjectVR
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject paintballPrefab;
+    public Transform spawnPoint;
+    public float shootingForce;
+    public ShotCounter shotCounterScript;
 
-    // Update is called once per frame
+    private bool enable;
+
     void Update()
     {
-        
+        if (isBeingHeld == true)
+        {
+            if (controller.triggerValue > 0.5f && !enable)
+            {
+                enable = true;
+                Interactable();
+            }
+            if (controller.triggerValue < 0.5f && enable)
+            {
+                enable = false;
+            }
+        }
+    }
+    public void Interactable()
+    {
+        GameObject tempPaintball = Instantiate(paintballPrefab, spawnPoint.position, spawnPoint.rotation);
+        tempPaintball.GetComponent<Rigidbody>().AddForce(tempPaintball.transform.forward * shootingForce);
+        Destroy(tempPaintball, 3);
+        shotCounterScript.shotsFired++;
     }
 }

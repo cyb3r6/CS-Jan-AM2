@@ -19,7 +19,7 @@ public class UtilityInstructionSteps : MonoBehaviour
 
         steps.Clear();
 
-        for(int i = 0; i < initializeHeatCanvas.transform.childCount - 1; i++)
+        for(int i = 0; i < initializeHeatCanvas.transform.childCount - 2; i++)
         {
             steps.Add(initializeHeatCanvas.transform.GetChild(i).gameObject);
         }
@@ -33,7 +33,7 @@ public class UtilityInstructionSteps : MonoBehaviour
 
         steps.Clear();
 
-        for (int i = 0; i < saltWaterCanvas.transform.childCount - 1; i++)
+        for (int i = 0; i < saltWaterCanvas.transform.childCount - 2; i++)
         {
             steps.Add(saltWaterCanvas.transform.GetChild(i).gameObject);
         }
@@ -61,7 +61,18 @@ public class UtilityInstructionSteps : MonoBehaviour
 
     public void PreviousStep()
     {
+        Debug.Log("called");
+        steps[currentStep].SetActive(false);
 
+        if (currentStep <= 0)
+        {
+            currentStep = 0;
+            steps[0].SetActive(true);
+
+            return;
+        }
+
+        steps[--currentStep].SetActive(true);
     }
 
 }

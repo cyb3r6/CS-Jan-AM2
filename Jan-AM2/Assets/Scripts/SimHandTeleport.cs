@@ -23,7 +23,7 @@ public class SimHandTeleport : MonoBehaviour
     
     void Update()
     {
-        if (movementJan.isButtonPressed)
+        if (Input.GetKeyDown(KeyCode.T))
         {
             RaycastHit hit;
             if(Physics.Raycast(simHand.position, simHand.forward, out hit))
@@ -39,7 +39,7 @@ public class SimHandTeleport : MonoBehaviour
                 Offset();
             }
         }
-        else if(movementJan.isButtonPressed == false)
+        if(Input.GetKeyUp(KeyCode.T))
         {
             if(shouldTeleport == true)
             {

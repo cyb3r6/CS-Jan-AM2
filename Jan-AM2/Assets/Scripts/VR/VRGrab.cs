@@ -29,7 +29,8 @@ public class VRGrab : MonoBehaviour
             {
                 heldObject = collidingObject;
 
-                Grab();
+                //Grab();
+                AdvGrab();
             }
         }
         else if(controller.gripValue < 0.8f && gripHeld == true)
@@ -38,7 +39,8 @@ public class VRGrab : MonoBehaviour
 
             if (heldObject)
             {
-                Release();
+                //Release();
+                AdvRelease();
             }
         }
 

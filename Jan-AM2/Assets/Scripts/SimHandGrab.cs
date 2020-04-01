@@ -9,6 +9,7 @@ public class SimHandGrab : MonoBehaviour
     public float throwForce;
     public Transform grabPosition;
     private MovementJan movementJan;
+    public bool isButtonPressed;
 
     private void Awake()
     {
@@ -49,6 +50,15 @@ public class SimHandGrab : MonoBehaviour
                 //Release();
                 AdvRelease();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && heldObject)
+        {            
+            isButtonPressed = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0) && heldObject)
+        {
+            isButtonPressed = false;
         }
 
         #region Using BroadcastMessage
@@ -114,6 +124,7 @@ public class SimHandGrab : MonoBehaviour
         {
             grabbable.hand = this.gameObject;
             grabbable.isBeingHeld = true;
+            grabbable.simHandController = this;
         }
     }
 
@@ -126,6 +137,7 @@ public class SimHandGrab : MonoBehaviour
             {
                 grabbable.hand = null;
                 grabbable.isBeingHeld = false;
+                grabbable.simHandController = null;
             }
 
             Destroy(GetComponent<FixedJoint>());
