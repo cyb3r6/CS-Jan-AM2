@@ -8,8 +8,8 @@ public class SimHandGrab : MonoBehaviour
     public GameObject heldObject;
     public float throwForce;
     public Transform grabPosition;
-    private MovementJan movementJan;
     public bool isButtonPressed;
+    private MovementJan movementJan;    
 
     private void Awake()
     {
